@@ -1,16 +1,19 @@
-import { Fragment } from "react/jsx-runtime";
+import { Product } from "../../app/models/product";
 
-export default function Catalog(props: any) {
+type Props = {
+    products: Product[];
+    addProduct: () => void;
+}
+
+export default function Catalog({products, addProduct}: Props) {
   return (    
     <>
         <ul>
-            {props.products.map((product) => (
-                <li key={product.id}>
-                {product.id} - {product.name} - {product.price}
-                </li>
+            {products.map((product) => (
+                <li key={product.id}>{product.id} - {product.name} - {product.price}</li>
             ))}
         </ul>
-        <button onClick={props.addProduct}>Add Product</button>
+        <button onClick={addProduct}>Add Product</button>
     </>
   )
 }
