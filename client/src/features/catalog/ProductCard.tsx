@@ -1,5 +1,6 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
 import { Product } from "../../app/models/product"
+import { Link } from "react-router"
 
 type Props = {
     product: Product
@@ -33,10 +34,7 @@ export default function ProductCard({product}: Props) {
                     variant="h6"
                     sx={{ color: 'secondary.main' }}
                 >
-                    {/* {currencyFormat(product.price)} */}
-
                     ${(product.price / 100).toFixed(2)}
-
                 </Typography>
             </CardContent>
             <CardActions
@@ -45,11 +43,9 @@ export default function ProductCard({product}: Props) {
                 {/* <Button 
                     disabled={isLoading}
                     onClick={() => addBasketItem({product, quantity: 1})}
-                >Add to cart</Button>
-                <Button component={Link} to={`/catalog/${product.id}`}>View</Button> */}
-
+                >Add to cart</Button> */}
                 <Button>Add to cart</Button>
-                <Button>View</Button>
+                <Button component={Link} to={ `/catalog/${product.id}` }>View</Button>
 
             </CardActions>
         </Card>
