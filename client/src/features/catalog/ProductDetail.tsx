@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Product } from "../../app/models/product";
-import { Button, Divider, Grid2, Table, TableBody, TableContainer, TextField, Typography } from "@mui/material";
+import { Button, Divider, Grid2, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 
 export default function ProductDetail() {
-
   const {id} = useParams();
   const [product, setProduct] = useState<Product | null>(null);
 
@@ -16,6 +15,14 @@ export default function ProductDetail() {
   }, [id])
 
   if(!product) return <div>Loading...</div>
+
+  const productDetails = [
+    { label: 'Name', value: product.name },
+    { label: 'Description', value: product.description },
+    { label: 'Type', value: product.type },
+    { label: 'Brand', value: product.brand },
+    { label: 'Quantity in stock', value: product.quantityInStock },
+  ]
 
   return (
     <Grid2 container spacing={6} maxWidth='lg' sx={{ mx: 'auto' }}>
@@ -31,7 +38,12 @@ export default function ProductDetail() {
             '& td': {fontSize: '1rem'}
           }}>
             <TableBody>
-              Table goes here
+              {productDetails.map((detail, index) => 
+              <TableRow key={index}>
+                <TableCell sx={{fontWeight: 'bold'}}>{detail.label}</TableCell>
+                <TableCell>{detail.value}</TableCell>
+              </TableRow>
+              )}
 
             </TableBody>
           </Table>
@@ -58,9 +70,6 @@ export default function ProductDetail() {
             </Button>
           </Grid2>
         </Grid2>
-
-
-
       </Grid2>
     </Grid2>
   )
