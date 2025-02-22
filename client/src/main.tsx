@@ -12,8 +12,6 @@ import { configureTheStore } from './app/store/store';
 
 const store = configureTheStore()
 
-console.log(store.getState());
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
