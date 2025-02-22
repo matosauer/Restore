@@ -13,18 +13,25 @@ export function increment(ammount = 1) {
     }
 }
 
-export default function counterReducer(state = initialState, action: { type: string }) {
+export function decrement(ammount = 1) {
+    return {
+        type: 'decrement',
+        payload: ammount
+    }
+}
+
+export default function counterReducer(state = initialState, action: { type: string, payload: number }) {   
     switch (action.type) {
         case 'increment':
             return {
                 ...state,
-                data: state.data + 1
+                data: state.data + action.payload
             }
 
         case 'decrement':
             return {
                 ...state,
-                data: state.data - 1
+                data: state.data - action.payload
             }
 
         default:
