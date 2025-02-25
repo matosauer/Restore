@@ -46,7 +46,6 @@ export default function ProductCard({product}: Props) {
                 >Add to cart</Button> */}
                 <Button>Add to cart</Button>
                 <Button component={Link} to={ `/catalog/${product.id}` }>View</Button>
-
             </CardActions>
         </Card>
   )

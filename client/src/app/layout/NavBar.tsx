@@ -14,7 +14,6 @@ const rightLinks = [
     { title: 'register', path: '/register' }
 ]
 
-
 const navStyles ={
     color: 'inherit', 
     typography: 'h6',
@@ -80,7 +79,7 @@ export default function NavBar({darkMode, switchMode}: Props) {
                 </Box>
 
             </Toolbar>
-            {isLoading  && (
+            {isLoading && (
                     <Box>
                         <LinearProgress color="secondary" />
                     </Box>

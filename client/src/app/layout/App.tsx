@@ -2,18 +2,33 @@ import { useState } from "react";
 import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import NavBar from "./NavBar";
 import { Outlet } from "react-router";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { toggleTheme } from "./darkThemeSlice";
 
-const getInitialDarkMode = () => {  
+/*
+  const getInitialDarkMode = () => {  
   const storedDarkMode = localStorage.getItem('darkMode');
   return storedDarkMode ? JSON.parse(storedDarkMode) : true;
 }
+*/
 
 function App() {  
+
+  /*
   const [darkMode, setDarkMode] = useState(getInitialDarkMode());
   const switchMode = () => {
     localStorage.setItem('darkMode', JSON.stringify(!darkMode));
     setDarkMode(!darkMode);
   }
+  */
+
+  const dispatch = useAppDispatch()
+
+  const switchMode = () => {
+    dispatch(toggleTheme());
+  }
+
+  const { darkMode } = useAppSelector(state => state.darkTheme);
 
   const palleteType = darkMode ? 'dark' : 'light';
   const darkTheme = createTheme({
