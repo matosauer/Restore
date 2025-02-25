@@ -3,13 +3,19 @@ import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/ma
 import NavBar from "./NavBar";
 import { Outlet } from "react-router";
 
-function App() {  
-  const [darkMode, setDarkMode] = useState(false);
+const getInitialDarkMode = () => {  
+  const storedDarkMode = localStorage.getItem('darkMode');
+  return storedDarkMode ? JSON.parse(storedDarkMode) : true;
+}
 
-  const switchMode = () => setDarkMode((m) => !m);
+function App() {  
+  const [darkMode, setDarkMode] = useState(getInitialDarkMode());
+  const switchMode = () => {
+    localStorage.setItem('darkMode', JSON.stringify(!darkMode));
+    setDarkMode(!darkMode);
+  }
 
   const palleteType = darkMode ? 'dark' : 'light';
-
   const darkTheme = createTheme({
     palette: {
       mode: palleteType,
