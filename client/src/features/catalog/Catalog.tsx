@@ -13,7 +13,7 @@ export default function Catalog() {
         .then(data => setProducts(data));
     }, []);
     */
-
+    
     const {data, isLoading} = useFetchProductsQuery();
     if(isLoading || !data){
       return <div>Loading...</div>

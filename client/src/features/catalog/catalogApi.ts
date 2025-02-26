@@ -17,4 +17,7 @@ export const catalogApi = createApi({
 });
 
 
-export const { useFetchProductsQuery, useFetchProductDetailsQuery } = catalogApi;
+export const { 
+    useFetchProductsQuery, 
+    useFetchProductDetailsQuery 
+} = catalogApi;
