@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithErrorHandling } from "../../app/api/baseApi";
 import { User } from "../../app/models/user";
+import { LoginSchema } from "../../lib/schemas/loginSchema";
 // import { router } from "../../app/routes/Routes";
 // import { toast } from "react-toastify";
 
@@ -9,7 +10,7 @@ export const accountApi = createApi({
     baseQuery: baseQueryWithErrorHandling,
     tagTypes: ['UserInfo'],
     endpoints: (builder) => ({
-        login: builder.mutation<void, object>({
+        login: builder.mutation<void, LoginSchema>({
             query: (creds) => {
                 return {
                     url: 'login?useCookies=true',
