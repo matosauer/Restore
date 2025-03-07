@@ -27,11 +27,16 @@ builder.Services.AddIdentityApiEndpoints<User>(opt =>
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseCors(opt => 
 {  
     opt
     .AllowAnyHeader()
     .AllowAnyMethod()
+    .AllowCredentials()
     .WithOrigins("https://localhost:3000");
 });
 

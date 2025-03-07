@@ -3,6 +3,7 @@ import { AppBar, Badge, Box, IconButton, LinearProgress, List, ListItem, Toolbar
 import { NavLink } from "react-router";
 import { useAppSelector } from "../store/store";
 import UserMenu from "./UserMenu";
+import { useUserInfoQuery } from "../../features/account/accountAPi";
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -33,8 +34,7 @@ type Props = {
 }
 
 export default function NavBar({darkMode, switchMode}: Props) {
-
-    const user = {email: ' test@test.com', roles: []};
+    const {data: user} = useUserInfoQuery();
 
     const { isLoading } = useAppSelector(state => state.ui);
 
