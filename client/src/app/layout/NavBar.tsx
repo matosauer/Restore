@@ -2,6 +2,7 @@ import { DarkMode, LightMode, ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, Box, IconButton, LinearProgress, List, ListItem, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router";
 import { useAppSelector } from "../store/store";
+import UserMenu from "./UserMenu";
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -32,6 +33,9 @@ type Props = {
 }
 
 export default function NavBar({darkMode, switchMode}: Props) {
+
+    const user = {email: ' test@test.com', roles: []};
+
     const { isLoading } = useAppSelector(state => state.ui);
 
     return (
@@ -63,19 +67,23 @@ export default function NavBar({darkMode, switchMode}: Props) {
                             <ShoppingCart color="action" />
                         </Badge>
                     </IconButton>
-                    
-                    <List sx={{display: 'flex'}}>
-                        {rightLinks.map(({title, path}) => (
-                            <ListItem
-                                component={NavLink}
-                                to={path}
-                                key={path}
-                                sx={navStyles}
-                            >
-                                {title.toUpperCase()}
-                            </ListItem>
-                        ))}
-                    </List>
+
+                    {user ? (
+                        <UserMenu user={user} />
+                    ) : (
+                        <List sx={{display: 'flex'}}>
+                            {rightLinks.map(({title, path}) => (
+                                <ListItem
+                                    component={NavLink}
+                                    to={path}
+                                    key={path}
+                                    sx={navStyles}
+                                >
+                                    {title.toUpperCase()}
+                                </ListItem>
+                            ))}
+                        </List>
+                    )}
                 </Box>
 
             </Toolbar>
