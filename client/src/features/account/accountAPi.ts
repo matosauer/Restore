@@ -3,8 +3,7 @@ import { baseQueryWithErrorHandling } from "../../app/api/baseApi";
 import { User } from "../../app/models/user";
 import { LoginSchema } from "../../lib/schemas/loginSchema";
 import { router } from "../../app/routes/Routes";
-// import { router } from "../../app/routes/Routes";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export const accountApi = createApi({
     reducerPath: 'accountApi',
@@ -35,17 +34,17 @@ export const accountApi = createApi({
                     method: 'POST',
                     body: creds
                 }
+            },
+            async onQueryStarted(_, {queryFulfilled}) {
+                try {
+                    await queryFulfilled;
+                    toast.success('Registration successful - you can now sign in!');
+                    router.navigate('/login');
+                } catch (error) {
+                    console.log(error);
+                    throw error;
+                }
             }
-            // ,async onQueryStarted(_, {queryFulfilled}) {
-            //     try {
-            //         await queryFulfilled;
-            //         toast.success('Registration successful - you can now sign in!');
-            //         router.navigate('/login');
-            //     } catch (error) {
-            //         console.log(error);
-            //         throw error;
-            //     }
-            // }
         }),
         userInfo: builder.query<User, void>({
             query: () => 'account/user-info', 

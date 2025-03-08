@@ -8,6 +8,7 @@ import AboutPage from "../../features/about/AboutPage";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import LoginForm from "../../features/account/LoginForm";
+import RegisterForm from "../../features/account/RegisterForm";
 
 export const router = createBrowserRouter([{
         path: '/',
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([{
             {path: 'contact', element: <ContactPage/>},
             {path: 'server-error', element: <ServerError/>},
             {path: 'login', element: <LoginForm/>},
+            {path: 'register', element: <RegisterForm />},
             {path: 'not-found', element: <NotFound/>},
             {path: '*', element: <Navigate replace to='/not-found' />}
         ]
