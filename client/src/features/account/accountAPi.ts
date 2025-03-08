@@ -93,7 +93,7 @@ export const accountApi = createApi({
 });
 
 export const {useLoginMutation, useRegisterMutation, useLogoutMutation,
-    useUserInfoQuery
-    // useLazyUserInfoQuery, useFetchAddressQuery, 
+    useUserInfoQuery, useLazyUserInfoQuery
+    // useFetchAddressQuery, 
     // useUpdateUserAddressMutation
 } = accountApi;

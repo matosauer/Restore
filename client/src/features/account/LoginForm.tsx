@@ -1,10 +1,10 @@
 import { LockOutlined } from "@mui/icons-material";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { loginSchema, LoginSchema } from "../../lib/schemas/loginSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLoginMutation } from "./accountAPi";
+import { useLazyUserInfoQuery, useLoginMutation } from "./accountAPi";
 
 export default function LoginForm() {
     const [login, {isLoading}] = useLoginMutation();
@@ -14,11 +14,14 @@ export default function LoginForm() {
         resolver: zodResolver(loginSchema)
     });
 
+    const [fetchUserInfo] = useLazyUserInfoQuery();
     const navigate = useNavigate();
 
+    const location = useLocation();
     const onSubmit = async (data: LoginSchema) => {
-        await login(data);//.unwrap();
-        navigate('/catalog');
+        await login(data).unwrap();
+        await fetchUserInfo();
+        navigate(location.state?.from || '/catalog');
     };
     
     return (
