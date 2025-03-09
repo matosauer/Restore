@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Product } from "../../app/models/product";
 import { Button, Divider, Grid2, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 import { useFetchProductDetailsQuery } from "./catalogApi";
 

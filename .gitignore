@@ -484,3 +484,4 @@ $RECYCLE.BIN/
 *.swp
 API/restore.db-shm
 API/restore.db-wal
+client/.env.production

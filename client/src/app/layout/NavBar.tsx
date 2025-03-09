@@ -69,7 +69,7 @@ export default function NavBar({darkMode, switchMode}: Props) {
                     </IconButton>
 
                     {user ? (
-                        <UserMenu user={user} />
+                        <UserMenu user={user} sx={navStyles} />
                     ) : (
                         <List sx={{display: 'flex'}}>
                             {rightLinks.map(({title, path}) => (

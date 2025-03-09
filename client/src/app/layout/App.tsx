@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import NavBar from "./NavBar";
 import { Outlet } from "react-router";

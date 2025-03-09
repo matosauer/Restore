@@ -5,10 +5,11 @@ import { History, Logout, Person } from "@mui/icons-material";
 import { useLogoutMutation } from "../../features/account/accountAPi";
 
 type Props = {
-    user: User
+    user: User,
+    sx: Object
 }
 
-export default function UserMenu({ user }: Props) {
+export default function UserMenu({ user, sx }: Props) {
     const [logout] = useLogoutMutation();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -21,7 +22,7 @@ export default function UserMenu({ user }: Props) {
 
     return (
         <div>
-            <Button
+            <Button sx={sx}
                 onClick={handleClick}
             >
                 {user.email}

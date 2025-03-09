@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { Product } from "../../app/models/product";
 import ProductList from "./ProductList";
 import { useFetchProductsQuery } from "./catalogApi";
 
@@ -18,7 +16,6 @@ export default function Catalog() {
     if(isLoading || !data){
       return <div>Loading...</div>
     }
-    
     
   return (    
     <>
