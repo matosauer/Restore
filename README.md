@@ -16,3 +16,10 @@ To build the api run:
 
 To publish the api:
 />dotnet publish -c Release -o ./bin/Publish
+
+
+Used tools:
+Transform json to typescript:
+https://transform.tools/json-to-typescript
+
+
