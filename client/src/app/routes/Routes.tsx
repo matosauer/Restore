@@ -11,6 +11,7 @@ import LoginForm from "../../features/account/LoginForm";
 import RegisterForm from "../../features/account/RegisterForm";
 import RequireAuth from "./RequireAuth";
 import CheckoutPage from "../../features/checkout/CheckoutPage";
+import BasketPage from "../../features/basket/basketPage";
 
 export const router = createBrowserRouter([{
         path: '/',
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([{
             {path: 'catalog', element: <Catalog/>},
             {path: 'catalog/:id', element: <ProductDetail/>},
             {path: 'about', element: <AboutPage/>},
+            {path: 'basket', element: <BasketPage/>},
             {path: 'contact', element: <ContactPage/>},
             {path: 'server-error', element: <ServerError/>},
             {path: 'login', element: <LoginForm/>},

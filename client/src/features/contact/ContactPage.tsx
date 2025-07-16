@@ -7,7 +7,7 @@ export default function ContactPage() {
   const dispatch = useAppDispatch()
   return (
     <>
-      <Typography variant="h2">Contact Page 77</Typography>
+      <Typography variant="h2">Contact Page</Typography>
       <Typography variant="body1">The data is {data}</Typography>
 
       <ButtonGroup>
