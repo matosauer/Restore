@@ -1,5 +1,6 @@
-import { Typography } from "@mui/material";
+import { Grid2, Typography } from "@mui/material";
 import { useFetchBasketQuery } from "./basketApi"
+import BasketItem from "./BasketItem";
 
 export default function BasketPage() {
 
@@ -10,10 +11,12 @@ if (isLoading) return <div>Loading...</div>;
 if (!data || data.items.length === 0) return <Typography variant="h3">Your basket is empty</Typography>;
 
   return (
-    <div>
-        <Typography variant="h4">Basket Page</Typography>
-        {data.basketId}
-
-    </div>
+    <Grid2 container spacing={2}>
+      <Grid2 size={8}>
+        {data.items.map(item => (
+            <BasketItem item={item} key={item.productId} />
+        ))}
+      </Grid2>
+    </Grid2>
   )
 }
