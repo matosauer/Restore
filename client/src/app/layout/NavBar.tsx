@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router";
 import { useAppSelector } from "../store/store";
 import UserMenu from "./UserMenu";
 import { useUserInfoQuery } from "../../features/account/accountAPi";
+import { useFetchBasketQuery } from "../../features/basket/basketApi";
 
 const midLinks = [
     { title: 'catalog', path: '/catalog' },
@@ -35,8 +36,10 @@ type Props = {
 
 export default function NavBar({darkMode, switchMode}: Props) {
     const {data: user} = useUserInfoQuery();
-
     const { isLoading } = useAppSelector(state => state.ui);
+    const { data: basket}=useFetchBasketQuery();
+
+    const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
     return (
         <AppBar position="fixed">
@@ -63,7 +66,7 @@ export default function NavBar({darkMode, switchMode}: Props) {
 
                 <Box display='flex' alignItems='center'>
                     <IconButton component={Link} to='basket' size="large" sx={{color: 'inherit'}}>
-                        <Badge badgeContent={3} color="secondary">
+                        <Badge badgeContent={itemCount} color="secondary">
                             <ShoppingCart color="action" />
                         </Badge>
                     </IconButton>
