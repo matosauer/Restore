@@ -1,5 +1,8 @@
 export default function CheckoutPage() {
   return (
-    <div>Checkout Page</div>
+    <div>
+      Only authenticated users can see this page.
+      <p>Checkout functionality will be implemented here.</p>
+    </div>
   )
 }

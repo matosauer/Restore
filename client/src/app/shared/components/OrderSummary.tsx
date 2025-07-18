@@ -2,6 +2,7 @@ import { Box, Typography, Divider, Button, TextField, Paper } from "@mui/materia
 import { currencyFormat } from "../../../lib/utils";
 import { useFetchBasketQuery } from "../../../features/basket/basketApi";
 import { Item } from "../../models/basket";
+import { Link } from "react-router";
 
 
 function getSubTotal(data : Item[]) {
@@ -55,6 +56,8 @@ export default function OrderSummary() {
 
                 <Box mt={2}>
                     <Button
+                        component={Link}
+                        to='/checkout'
                         variant="contained"
                         color="primary"
                         fullWidth

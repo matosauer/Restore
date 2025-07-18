@@ -28,16 +28,23 @@ export const basketApi = createApi({
                 }
             ,
             onQueryStarted: async ({ product, quantity }, { dispatch, queryFulfilled }) => {
-                const productId = isBasketItem(product) ? product.productId : product.id;
+                let isNewBasket = false;                
                 const patchResult = dispatch(
                     basketApi.util.updateQueryData('fetchBasket', undefined, (draft) => {
-                        const existingItem = draft.items.find(item => item.productId === productId);
-                        if (existingItem) {
-                            existingItem.quantity += quantity;
-                        } else {
-                            draft.items.push(isBasketItem(product)
-                                ? product : {...product, productId: product.id, quantity});
+                        const productId = isBasketItem(product) ? product.productId : product.id;
+                        
+                        if(!draft?.basketId) isNewBasket = true;
+                        
+                        if(!isNewBasket){
+                            const existingItem = draft.items.find(item => item.productId === productId);
+                            if (existingItem) {
+                                existingItem.quantity += quantity;
+                            } else {
+                                draft.items.push(isBasketItem(product)
+                                    ? product : {...product, productId: product.id, quantity});
+                            }
                         }
+
                     })
                 )
 
@@ -46,6 +53,12 @@ export const basketApi = createApi({
                     // Optionally, you can invalidate the basket cache here if needed
                     // This is useful if you want to ensure the basket is always up-to-date
                     //dispatch(basketApi.util.invalidateTags(['Basket']))
+
+                    if(isNewBasket) {
+                        // If this is a new basket, we might want to refetch the basket to get the latest state
+                        dispatch(basketApi.util.invalidateTags(['Basket']));
+                    }
+
                 } catch (error) {
                     console.log(error);
                     patchResult.undo(); // Rollback the optimistic update if the query fails
